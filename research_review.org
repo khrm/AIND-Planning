@@ -1,0 +1,21 @@
+* AI planning and search
+AI planning started from investigation into state-space search, theorem proving, control theory, robotics, scheduling and other domains. STRIPS the first planning system used for Shakey Robot project.[1] It's control structure was based on General Problem Solver. The representation language is quite influencial and was the basis of Action Description Language.[2]
+
+The Problem Domain Description Language inspired by ADL and STRIPS has standardized syntax for representing planning problems.It fosters the reuse of of research and more direct comparison of systems and approaches, and therefore supports faster progress in the field. [3]
+
+Planners initially used ordered action sequences called linear planning which is incomplete. WARPLAN a planner written in Prolog provided the solution to interleaving problem by using goal-regression planning. [4]
+
+Partially ordered planner has dominated most of the research in planners. State space has regained the interest nowadays.
+
+The construction of partially ordered planner was pioneered by the NOAH Planner[5] and NONLIN system[6]. The GRAPHLAN system based on graph planning  was many orders of the magnitude faster than the partial order-planners of the time.[7] The best state space search planner to date is FF. Constraint based approaches such as GRAPHLAN are best for NP hard domains while search based appraoaches do better in domains where feasible solutions can be found without backtracking.[8] GRAPHLAN have trouble in domains with many objects because that means they much create many actions.[9]
+
+
+[1] Richard E. Fikes; Nils J. Nilsson. STRIPS: A New Approach to the Application of Theorem Proving to Problem Solving
+[2] Pednault. ADL: exploring the middle ground between STRIPS and the situation calculus
+[3] Fox, M.; Long, D.. "PDDL+: Modeling continuous time dependent effects
+[4] David H. D. Warren. Warplan: A System for Generating Plans
+[5] Sacerdoti, E.D. The non linear nature of plan
+[6] Using Goal Structure to Direct Search in a Problem Solver
+[7] Blum A and Furst M. Fast planning through graph analysis
+[8] Helmert M, On the complexity of planning in transportation domain
+[9] Russel, Stuart and Norvig, Peter. Artificial Intelligence: A Modern Apporach
