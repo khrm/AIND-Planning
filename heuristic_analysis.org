@@ -5,7 +5,7 @@
 |--------------------------+------------+------------+-----------+-------------+---------------------+---------|
 | Search                   | Expansions | Goal Tests | New Nodes | Plan length |        Time elapsed | Optimal |
 |--------------------------+------------+------------+-----------+-------------+---------------------+---------|
-| breadth_first_search     |         43 |         56 |       180 |           6 | 0.04683144300361164 | Yes     |
+| breadth_first_search       |         43 |         56 |       180 |           6 | 0.04683144300361164 | Yes     |
 | depth_first_graph_search |         21 |         22 |        84 |          20 | 0.01650939101818949 | No      |
 | uniform_cost_search      |         55 |         57 |       224 |           6 | 0.05334271999890916 | Yes     |
 |--------------------------+------------+------------+-----------+-------------+---------------------+---------|
@@ -32,6 +32,7 @@
 
 
 BFS and UCS gives us the optimal and complete solution. DFS while being fastest for this small problem and more efficient in term of resources gives us a non optimal solution.
+BFS is optimal when path cost is same or non decreasing function of depth. It is because when a goal is reached, at that depth all other nodes with lesser depth have already been rejected. DFS isn't optimal because it searches till the leaf one by one which causes it to ignore depth. [1] One solution to this is iterative deepening search.
 
 ** Metrics for non-heuristic planning solution searches
 
@@ -65,7 +66,14 @@ BFS and UCS gives us the optimal and complete solution. DFS while being fastest 
 | h_pg_levelsum          |       1958 |       1960 |     15626 |          12 | 1196.0613465080096 |
 |------------------------+------------+------------+-----------+-------------+--------------------|
 
-h_ignore_preconditions heuristic provides results in least time. It expands less nodes than h_1. h_pg_levelsum provides results in slowest time. A* search gives optimal results, so these results were optimal.
+h_ignore_preconditions heuristic provides results in least time. It expands less nodes than h_1(the worst heuristic possible/not a true heuristic). h_pg_levelsum provides results in slowest time. A* search gives optimal results, so these results were optimal.
+Level sum while having less node expansions, tests and new nodess is quite slower because it needs to have planning graph constructed to work.
+
+
+** Conclusion
+In this problem if we ignore optimality, dfs might gives us faster results but they are too exorbitant plans. Heuristic with A* search gives us near dfs speed.
+Among heuristics, if we have low memory, we can go with levelsum as it expans least number of nodes, does least goal tests and expansions. If we need higher speed, we could go with ignore preconditions heuristic.
+
 
 ** Optimal Plans for Problems
 *** Problem 1
@@ -100,3 +108,5 @@ h_ignore_preconditions heuristic provides results in least time. It expands less
 10. Fly(P1, ORD, SFO)
 11. Unload(C2, P1, SFO)
 12. Unload(C4, P1, SFO)
+
+[1] Artificial Intelligence: A Modern Approach 3ed, p82
